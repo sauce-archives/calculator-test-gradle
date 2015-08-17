@@ -18,3 +18,7 @@ dependencies {
     testCompile 'org.testobject.extras.appium:appium-java-api:0.0.5'
 
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
