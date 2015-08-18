@@ -19,8 +19,8 @@ dependencies {
 
 }
 
-task('run') {
-    println 'RUNNING'
+test {
+    include '**Parallel'
 }
 
 task wrapper(type: Wrapper) {
