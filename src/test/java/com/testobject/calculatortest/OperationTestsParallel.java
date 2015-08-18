@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(Parallelized.class)
-public class OperationTestsParallel extends OperationsTests {
+public class OperationTestsParallel extends OperationTests {
 
     @Parameterized.Parameters
     public static List<Object[]> data() {
