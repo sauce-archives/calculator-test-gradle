@@ -151,7 +151,7 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 	public SELF againstTestobject(String apiKey, int appId, String deviceId) {
 		this.testObjectConfig = Optional.of(new TestObjectConfig(apiKey, appId, deviceId));
-		this.endpoint = "http://branches.testobject.org:80/api/appium/wd/hub";
+		this.endpoint = "https://app.testobject.com:443/api/appium/wd/hub"; //"http://branches.testobject.org:80/api/appium/wd/hub";
 
 		return (SELF) this;
 	}

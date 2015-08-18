@@ -22,7 +22,6 @@ public class CalculatorScreen extends AbstractScreen {
         MobileElement buttonTwo = findElement(By.id("net.ludeke.calculator:id/digit2"));
         MobileElement buttonPlus = findElement(By.id("net.ludeke.calculator:id/plus"));
         MobileElement buttonEquals = findElement(By.id("net.ludeke.calculator:id/equal"));
-        resultField = findElement(By.xpath("//android.widget.EditText[1]"));
 
         /* Add two and two. */
         buttonTwo.click();
@@ -35,6 +34,8 @@ public class CalculatorScreen extends AbstractScreen {
     public boolean isResultFour() {
 
         try {
+
+            resultField = findElement(By.xpath("//android.widget.EditText[1]"));
 
             /* Check if within given time the correct result appears in the designated field. */
             (new WebDriverWait(driver, 30)).until(ExpectedConditions.textToBePresentInElement(resultField, "4"));
@@ -71,7 +72,7 @@ public class CalculatorScreen extends AbstractScreen {
         MobileElement equalsButton = (MobileElement)(driver.findElement(By.id("net.ludeke.calculator:id/equal")));
         equalsButton.click();
 
-        MobileElement resultField = (MobileElement)(driver.findElement(By.xpath("//android.widget.EditText[1]")));
+        resultField = (MobileElement)(driver.findElement(By.xpath("//android.widget.EditText[1]")));
 
     }
 
