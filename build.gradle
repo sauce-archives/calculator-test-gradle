@@ -21,7 +21,7 @@ dependencies {
 
 test {
     println 'excluding!'
-    exclude '**OperationsTests'
+    include '**Parallel'
 }
 
 task wrapper(type: Wrapper) {
