@@ -25,6 +25,6 @@ public class OperationTestsParallel extends OperationTests {
     }
 
     public OperationTestsParallel(Device device){
-        super(device, AppiumDriverBuilder.forAndroid().againstTestobject(TestObject.API_KEY, TestObject.APP_ID, device.name));
+        super(device, AppiumDriverBuilder.forAndroid().againstTestobject());
     }
 }

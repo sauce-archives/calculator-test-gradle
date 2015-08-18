@@ -52,8 +52,6 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 				}
 			}
 
-
-
 			System.out.println(toURL(endpoint));
 
 			return new AndroidDriver(toURL(endpoint), capabilities);
