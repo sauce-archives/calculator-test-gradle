@@ -20,7 +20,7 @@ dependencies {
 }
 
 test {
-    include '**Parallel'
+    exclude '**OperationTests'
 }
 
 task wrapper(type: Wrapper) {
