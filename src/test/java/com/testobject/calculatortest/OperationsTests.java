@@ -8,11 +8,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
-public class OperationTests extends AbstractTest {
+public class OperationsTests extends AbstractTest {
 
-    public OperationTests() {}
+    public OperationsTests() {}
 
-    protected OperationTests(Device device, AppiumDriverBuilder driverBuilder) {
+    protected OperationsTests(Device device, AppiumDriverBuilder driverBuilder) {
         super(device, driverBuilder);
     }
 

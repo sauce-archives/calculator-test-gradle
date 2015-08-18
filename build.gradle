@@ -21,7 +21,7 @@ dependencies {
 
 test {
     println 'excluding!'
-    exclude 'java/com.testobject.calculatortest/OperationTests'
+    exclude '**Operations**'
 }
 
 task wrapper(type: Wrapper) {

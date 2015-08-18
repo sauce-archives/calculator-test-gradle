@@ -3,7 +3,6 @@ package com.testobject.calculatortest;
 import com.testobject.calculatortest.util.AppiumDriverBuilder;
 import com.testobject.calculatortest.util.Device;
 import com.testobject.calculatortest.util.Parallelized;
-import com.testobject.calculatortest.util.TestObject;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -11,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(Parallelized.class)
-public class OperationTestsParallel extends OperationTests {
+public class OperationTestsParallel extends OperationsTests {
 
     @Parameterized.Parameters
     public static List<Object[]> data() {
