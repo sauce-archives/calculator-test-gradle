@@ -79,7 +79,6 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
 //            capabilities.setCapability("autoAcceptAlerts", "true");
 
-
 			if (bundleId.isPresent()) {
 				capabilities.setCapability("bundleId", bundleId.get());
 			}
