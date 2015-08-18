@@ -20,7 +20,7 @@ dependencies {
 }
 
 test {
-    exclude '**/*OperationTests'
+    exclude '**/OperationTests'
 }
 
 task wrapper(type: Wrapper) {
