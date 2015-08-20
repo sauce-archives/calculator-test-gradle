@@ -1,6 +1,5 @@
 apply plugin: 'java'
 
-sourceCompatibility = 1.7
 version = '1.0'
 
 repositories {
@@ -20,7 +19,7 @@ dependencies {
 }
 
 test {
-    exclude '**/OperationTests'
+    exclude 'com/testobject/calculatortest/OperationTests.class'
 }
 
 task wrapper(type: Wrapper) {
