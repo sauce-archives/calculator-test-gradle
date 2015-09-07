@@ -5,7 +5,7 @@ package com.testobject.calculatortest.util;
  */
 public class TestObject {
 
-    public static final String API_KEY = "7CDE94EFFE3E4EF4A773DB2728688C53"; //"97E864BD7DC141FB8915969E77D6638B";
+    public static final String API_KEY = "60B5D33E4E4E4CD2B7EBD18979F026A3"; //"97E864BD7DC141FB8915969E77D6638B";
     public static final int APP_ID = 1;
 
 }

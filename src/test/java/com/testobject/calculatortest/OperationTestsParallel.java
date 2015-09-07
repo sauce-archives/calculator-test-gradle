@@ -24,6 +24,8 @@ public class OperationTestsParallel extends OperationTests {
     }
 
     public OperationTestsParallel(Device device){
-        super(device, AppiumDriverBuilder.forAndroid().againstTestobject());
+        super(device, AppiumDriverBuilder.forAndroid().againstTestobject("60B5D33E4E4E4CD2B7EBD18979F026A3", 1, "HTC_One_M8_real"));
     }
 }
+
+

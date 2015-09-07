@@ -54,7 +54,7 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 			System.out.println(toURL(endpoint));
 
-			return new AndroidDriver(toURL(endpoint), capabilities);
+			return new AndroidDriver(toURL("http://192.168.0.231:8080/api/appium/wd/hub"), capabilities);
 		}
 
 	}
@@ -99,7 +99,7 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 			this.endpoint = Optional.fromNullable(endpoint)
 					.or(Optional.fromNullable(System.getenv("APPIUM_ENDPOINT")).or("http://0.0.0.0:4723/wd/hub"));
 
-			return new IOSDriver(toURL(endpoint), capabilities);
+			return new IOSDriver(toURL("http://192.168.0.231:8080/api/appium/wd/hub"), capabilities);
 		}
 	}
 
@@ -148,7 +148,7 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 	public SELF againstTestobject(String apiKey, int appId, String deviceId) {
 		this.testObjectConfig = Optional.of(new TestObjectConfig(apiKey, appId, deviceId));
-		this.endpoint = "https://app.testobject.com:443/api/appium/wd/hub"; //"http://branches.testobject.org:80/api/appium/wd/hub";
+		this.endpoint = "http://192.168.0.231:8080/api/appium/wd/hub"; //"http://branches.testobject.org:80/api/appium/wd/hub";
 
 		return (SELF) this;
 	}

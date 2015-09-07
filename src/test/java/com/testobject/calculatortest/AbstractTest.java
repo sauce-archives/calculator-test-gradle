@@ -16,7 +16,7 @@ public abstract class AbstractTest {
     public TestName testName = new TestName();
 
     @Rule
-    public TestObjectTestResultWatcher resultWatcher = new TestObjectTestResultWatcher();
+    public TestObjectTestResultWatcher resultWatcher = new TestObjectTestResultWatcher("http://192.168.0.231:8080/api/appium/wd/hub");
 
     private final Device device;
     private final AppiumDriverBuilder driverBuilder;
