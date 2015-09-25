@@ -1,5 +1,6 @@
 package com.testobject.calculatortest;
 
+import com.testobject.calculatortest.screen.AdvancedPanelScreen;
 import io.appium.java_client.AppiumDriver;
 import com.testobject.calculatortest.screen.CalculatorScreen;
 import com.testobject.calculatortest.util.Device;
@@ -14,10 +15,8 @@ public class Calculator {
         this.driver = driver;
     }
 
-    public CalculatorScreen loginScreen() {
-        return new CalculatorScreen(driver, device);
-    }
-
     public CalculatorScreen calculatorScreen() { return new CalculatorScreen(driver, device); }
+
+    public AdvancedPanelScreen advancedPanelScreen() { return new AdvancedPanelScreen(driver, device); }
 
 }

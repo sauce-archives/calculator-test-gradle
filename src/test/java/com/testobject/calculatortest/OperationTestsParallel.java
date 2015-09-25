@@ -3,6 +3,7 @@ package com.testobject.calculatortest;
 import com.testobject.calculatortest.util.AppiumDriverBuilder;
 import com.testobject.calculatortest.util.Device;
 import com.testobject.calculatortest.util.Parallelized;
+import com.testobject.calculatortest.util.TestObject;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -24,6 +25,6 @@ public class OperationTestsParallel extends OperationTests {
     }
 
     public OperationTestsParallel(Device device){
-        super(device, AppiumDriverBuilder.forAndroid().againstTestobject());
+        super(device, AppiumDriverBuilder.forAndroid().againstTestobject(TestObject.API_KEY, TestObject.APP_ID, Device.Motorola_Moto_e_2nd_gen.name));
     }
 }

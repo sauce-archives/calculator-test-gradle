@@ -8,15 +8,13 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.testobject.appium.junit.TestObjectTestResultWatcher;
 
-
-
 public abstract class AbstractTest {
 
     @Rule
     public TestName testName = new TestName();
 
     @Rule
-    public TestObjectTestResultWatcher resultWatcher = new TestObjectTestResultWatcher();
+    public TestObjectTestResultWatcher resultWatcher = new TestObjectTestResultWatcher("https://app.testobject.com:443/api");
 
     private final Device device;
     private final AppiumDriverBuilder driverBuilder;
@@ -25,7 +23,7 @@ public abstract class AbstractTest {
     protected Calculator app;
 
     public AbstractTest() {
-        this.device = Device.motoe;
+        this.device = Device.Motorola_Moto_e_2nd_gen;
         this.driverBuilder = AppiumDriverBuilder.forAndroid();
     }
 
@@ -36,6 +34,7 @@ public abstract class AbstractTest {
 
     @Before
     public void connect() {
+
         driverBuilder.withSuiteName(this.getClass().getName());
         driverBuilder.withTestName(testName.getMethodName());
 

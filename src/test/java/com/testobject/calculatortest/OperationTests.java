@@ -2,11 +2,11 @@ package com.testobject.calculatortest;
 
 import com.testobject.calculatortest.util.AppiumDriverBuilder;
 import com.testobject.calculatortest.util.Device;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 
 public class OperationTests extends AbstractTest {
 
@@ -20,8 +20,12 @@ public class OperationTests extends AbstractTest {
     @Test
     public void twoPlusTwoOperation() {
 
-        app.calculatorScreen().addTwoAndTwo();
-        assertTrue(app.calculatorScreen().isResultFour());
+        app.calculatorScreen().tapDigit("2");
+        app.calculatorScreen().tapSymbol("+");
+        app.calculatorScreen().tapDigit("2");
+        app.calculatorScreen().tapSymbol("=");
+
+        assertTrue(app.calculatorScreen().isResultCorrect("4"));
 
     }
 
@@ -30,7 +34,11 @@ public class OperationTests extends AbstractTest {
     @Test
     public void factorialMinusOperation() {
 
-        app.calculatorScreen().doFactorialMinusOperation();
+        app.calculatorScreen().navigateToAdvancedPanel();
+        app.advancedPanelScreen().tapSymbol("!");
+        app.calculatorScreen().tapSymbol("−");
+        app.calculatorScreen().tapSymbol("=");
+
         assertFalse(app.calculatorScreen().isOperationValid());
 
     }
