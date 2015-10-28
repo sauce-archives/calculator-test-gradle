@@ -18,24 +18,11 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 	public static class AndroidDriverBuilder extends AppiumDriverBuilder<AndroidDriverBuilder, AndroidDriver> {
 
-		private Optional<String> bundleId = Optional.absent();
-		private Optional<String> udid = Optional.absent();
-
-		public AndroidDriverBuilder app(String bundleId) {
-
-			this.bundleId = Optional.of(bundleId);
-			return this;
-
-		}
-
 		public AndroidDriver build() {
+
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability("deviceName", "AndroidTestDevice");
 			capabilities.setCapability("platformName", "Android");
-
-			if (bundleId.isPresent()) {
-				capabilities.setCapability("bundleId", bundleId.get());
-			}
 
 			if (testObjectConfig.isPresent()) {
 				capabilities.setCapability(TESTOBJECT_API_KEY, testObjectConfig.get().apiKey);
@@ -52,11 +39,11 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 				endpoint = "https://app.testobject.com:443/api/appium/wd/hub";
 
 			} else {
-				endpoint = "http://0.0.0.0:4723/wd/hub";
+				endpoint = "http://127.0.0.1:4723/wd/hub";
 			}
 
-
 			return new AndroidDriver(toURL(endpoint), capabilities);
+
 		}
 
 	}
@@ -81,7 +68,7 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 	public SELF againstTestobject(String apiKey, int appId, String deviceId) {
 		this.testObjectConfig = Optional.of(new TestObjectConfig(apiKey, appId, deviceId));
-		this.endpoint = "https://app.testobject.com:443/api/appium/wd/hub"; //"http://branches.testobject.org:80/api/appium/wd/hub";
+		this.endpoint = "https://app.testobject.com:443/api/appium/wd/hub";
 
 		return (SELF) this;
 	}
