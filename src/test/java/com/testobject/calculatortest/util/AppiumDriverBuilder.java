@@ -12,6 +12,9 @@ import static org.testobject.appium.common.TestObjectCapabilities.*;
 
 public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
+	protected String apiKey;
+	protected String testReportId;
+
 	public static AndroidDriverBuilder forAndroid() {
 		return new AndroidDriverBuilder();
 	}
@@ -21,66 +24,41 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 		public AndroidDriver build() {
 
 			DesiredCapabilities capabilities = new DesiredCapabilities();
-			capabilities.setCapability("deviceName", "AndroidTestDevice");
-			capabilities.setCapability("platformName", "Android");
 
-			if (testObjectConfig.isPresent()) {
-				capabilities.setCapability(TESTOBJECT_API_KEY, testObjectConfig.get().apiKey);
-				capabilities.setCapability(TESTOBJECT_APP_ID, testObjectConfig.get().appId);
-				capabilities.setCapability(TESTOBJECT_DEVICE, testObjectConfig.get().deviceId);
+			String actualApiKey = (apiKey == null) ? System.getenv("TESTOBJECT_API_KEY") : apiKey;
 
-				if (suiteName.isPresent()) {
-					capabilities.setCapability(TESTOBJECT_SUITE_NAME, suiteName.get());
-				}
-				if (testName.isPresent()) {
-					capabilities.setCapability(TESTOBJECT_TEST_NAME, testName.get());
-				}
+			if (actualApiKey != null) {
 
-				endpoint = "https://app.testobject.com:443/api/appium/wd/hub";
+				capabilities.setCapability(TESTOBJECT_API_KEY, apiKey);
+				capabilities.setCapability(TESTOBJECT_TEST_REPORT_ID, testReportId);
 
-			} else {
-				endpoint = "http://127.0.0.1:4723/wd/hub";
+				this.endpoint = Optional.fromNullable(endpoint)
+						.or(Optional.fromNullable(System.getenv("APPIUM_ENDPOINT")).or("https://app.testobject.com:443/api/appium/wd/hub"));
+
+			} else { // test locally
+
+				capabilities.setCapability("deviceName", "testDevice");
+				this.endpoint = "http://0.0.0.0:4723/wd/hub";
+
 			}
 
-			return new AndroidDriver(toURL(endpoint), capabilities);
+			System.out.println(endpoint);
 
+			return new AndroidDriver(toURL(endpoint), capabilities);
 		}
 
 	}
 
 	protected String endpoint;
-	protected Optional<String> testName = Optional.absent();
-	protected Optional<String> suiteName = Optional.absent();
-	protected Optional<TestObjectConfig> testObjectConfig = Optional.absent();
 
-	private static class TestObjectConfig {
-
-		private final String apiKey;
-		private final int appId;
-		private final String deviceId;
-
-		public TestObjectConfig(String apiKey, int appId, String deviceId) {
-			this.apiKey = apiKey;
-			this.appId = appId;
-			this.deviceId = deviceId;
-		}
-	}
-
-	public SELF againstTestobject(String apiKey, int appId, String deviceId) {
-		this.testObjectConfig = Optional.of(new TestObjectConfig(apiKey, appId, deviceId));
-		this.endpoint = "https://app.testobject.com:443/api/appium/wd/hub";
+	public SELF withApiKey(String apiKey) {
+		this.apiKey = apiKey;
 
 		return (SELF) this;
 	}
 
-	public SELF withTestName(String testName){
-		this.testName = Optional.of(testName);
-
-		return (SELF) this;
-	}
-
-	public SELF withSuiteName(String suiteName){
-		this.suiteName = Optional.of(suiteName);
+	public SELF withTestReportId(String testReportId) {
+		this.testReportId = testReportId;
 
 		return (SELF) this;
 	}

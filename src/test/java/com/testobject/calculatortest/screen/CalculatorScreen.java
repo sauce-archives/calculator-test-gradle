@@ -1,6 +1,5 @@
 package com.testobject.calculatortest.screen;
 
-import com.testobject.calculatortest.util.Device;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -29,8 +28,8 @@ public class CalculatorScreen extends AbstractScreen {
     @AndroidFindBy(name = "Advanced panel")
     private MobileElement advancedPanelButton;
 
-    public CalculatorScreen(AppiumDriver driver, Device device) {
-        super(driver, device);
+    public CalculatorScreen(AppiumDriver driver) {
+        super(driver);
     }
 
     public void tapDigit(String digit) {
