@@ -58,12 +58,4 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 	public abstract DRIVER build();
 
-	private static URL toURL(String url) throws IllegalArgumentException {
-		try {
-			return new URL(url);
-		} catch (MalformedURLException e) {
-			throw new IllegalArgumentException("The given url is not valid: " + url, e);
-		}
-	}
-
 }
