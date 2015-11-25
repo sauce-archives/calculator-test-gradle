@@ -5,10 +5,9 @@ import org.junit.runner.RunWith;
 import org.testobject.appium.common.TestObject;
 import org.testobject.appium.junit.TestObjectAppiumSuite;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-@TestObject(testObjectApiKey = "YOUR_API_KEY", testObjectSuiteId = 123)
+@TestObject(testLocally = true, testObjectApiKey = "YOUR_API_KEY", testObjectSuiteId = 123)
 @RunWith(TestObjectAppiumSuite.class)
 public class OperationTests extends AbstractTest {
 
