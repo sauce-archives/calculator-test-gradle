@@ -1,6 +1,5 @@
 package com.testobject.calculatortest.util;
 
-import com.google.common.base.Optional;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -8,7 +7,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.testobject.appium.common.TestObjectCapabilities.*;
+import static org.testobject.appium.common.TestObjectCapabilities.TESTOBJECT_API_KEY;
+import static org.testobject.appium.common.TestObjectCapabilities.TESTOBJECT_TEST_REPORT_ID;
 
 public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
@@ -21,35 +21,28 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 	public static class AndroidDriverBuilder extends AppiumDriverBuilder<AndroidDriverBuilder, AndroidDriver> {
 
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+
 		public AndroidDriver build() {
 
-			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setCapability(TESTOBJECT_API_KEY, apiKey);
+			capabilities.setCapability(TESTOBJECT_TEST_REPORT_ID, testReportId);
 
-			String actualApiKey = (apiKey == null) ? System.getenv("TESTOBJECT_API_KEY") : apiKey;
+			capabilities.setCapability("deviceName", "testDevice");
 
-			if (actualApiKey != null) {
+			return new AndroidDriver(endpoint, capabilities);
 
-				capabilities.setCapability(TESTOBJECT_API_KEY, apiKey);
-				capabilities.setCapability(TESTOBJECT_TEST_REPORT_ID, testReportId);
-
-				this.endpoint = Optional.fromNullable(endpoint)
-						.or(Optional.fromNullable(System.getenv("APPIUM_ENDPOINT")).or("https://app.testobject.com:443/api/appium/wd/hub"));
-
-			} else { // test locally
-
-				capabilities.setCapability("deviceName", "testDevice");
-				this.endpoint = "http://0.0.0.0:4723/wd/hub";
-
-			}
-
-			System.out.println(endpoint);
-
-			return new AndroidDriver(toURL(endpoint), capabilities);
 		}
 
 	}
 
-	protected String endpoint;
+	protected URL endpoint;
+
+	public SELF withEndpoint(URL endpoint) {
+		this.endpoint = endpoint;
+
+		return (SELF) this;
+	}
 
 	public SELF withApiKey(String apiKey) {
 		this.apiKey = apiKey;

@@ -20,10 +20,6 @@ public abstract class AbstractScreen {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public MobileElement findElement(By by) {
-        return (MobileElement)driver.findElement(by);
-    }
-
     public MobileElement findElementWithTimeout(By by, int timeOutInSeconds) {
         return (MobileElement)(new WebDriverWait(driver, timeOutInSeconds)).until(ExpectedConditions.presenceOfElementLocated(by));
     }
@@ -31,9 +27,9 @@ public abstract class AbstractScreen {
     public void tapSymbol(String symbol) {
 
         try {
-            findElement(By.name(symbol)).click();
+            findElementWithTimeout(By.name(symbol), 10).click();
         } catch (NoSuchElementException e) {
-            System.out.println("Button "+symbol+" not found!");
+            System.out.println("Button " + symbol + " not found!");
         }
 
     }

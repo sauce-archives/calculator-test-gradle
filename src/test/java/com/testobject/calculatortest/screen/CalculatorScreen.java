@@ -35,7 +35,7 @@ public class CalculatorScreen extends AbstractScreen {
     public void tapDigit(String digit) {
 
         try {
-            findElement(By.name(digit)).click();
+            findElementWithTimeout(By.name(digit), 10).click();
         } catch (NoSuchElementException e) {
             System.out.println("Button "+digit+" not found!");
         }
@@ -45,6 +45,7 @@ public class CalculatorScreen extends AbstractScreen {
     public void navigateToAdvancedPanel() {
 
         menuButton.click();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(advancedPanelButton));
         advancedPanelButton.click();
 
     }
