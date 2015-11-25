@@ -38,17 +38,4 @@ public abstract class AbstractTest {
 
     }
 
-    /* After the session has ended, print out a link to the TestObject test report, if we are testing online. */
-    @After
-    public void tearDown() {
-        if (testIsInCloud()) {
-            System.out.println("Test " + testName.getMethodName() + " is over. View test report for it: " + driver.getCapabilities().getCapability("testobject_test_report_url"));
-        }
-    }
-
-    /* Determines whether we are testing on the cloud or locally by checking if the Api key is set. s*/
-    public boolean testIsInCloud() {
-        return resultWatcher.getApiKey() != null;
-    }
-
 }

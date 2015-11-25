@@ -10,23 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CalculatorScreen extends AbstractScreen {
 
-    @AndroidFindBy(id = "net.ludeke.calculator:id/plus")
-    private MobileElement buttonPlus;
-
-    @AndroidFindBy(id = "net.ludeke.calculator:id/equal")
-    private MobileElement buttonEquals;
-
-    @AndroidFindBy(id = "net.ludeke.calculator:id/factorial")
-    private MobileElement buttonFactorial;
-
     @AndroidFindBy(xpath = "//android.widget.EditText[1]")
     private MobileElement resultField;
-
-    @AndroidFindBy(id = "net.ludeke.calculator:id/overflow_menu")
-    private MobileElement menuButton;
-
-    @AndroidFindBy(name = "Advanced panel")
-    private MobileElement advancedPanelButton;
 
     public CalculatorScreen(AppiumDriver driver) {
         super(driver);
@@ -42,14 +27,6 @@ public class CalculatorScreen extends AbstractScreen {
 
     }
 
-    public void navigateToAdvancedPanel() {
-
-        menuButton.click();
-        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(advancedPanelButton));
-        advancedPanelButton.click();
-
-    }
-
     public boolean isResultCorrect(String result) {
 
         try {
@@ -61,22 +38,6 @@ public class CalculatorScreen extends AbstractScreen {
         } catch (Exception e) {
 
             return false;
-
-        }
-
-    }
-
-    public boolean isOperationValid() {
-
-        try {
-
-            /* Check if within given time the correct result appears in the designated field. */
-            (new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(resultField, "Error"));
-            return false;
-
-        } catch (Exception e) {
-
-            return true;
 
         }
 
