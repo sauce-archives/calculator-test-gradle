@@ -17,11 +17,7 @@ public class OperationTests extends AbstractTest {
     @Test
     public void twoPlusTwoOperation() {
 
-        app.calculatorScreen().tapDigit("2");
-        app.calculatorScreen().tapSymbol("+");
-        app.calculatorScreen().tapDigit("2");
-        app.calculatorScreen().tapSymbol("=");
-
+        app.calculatorScreen().addTwoAndTwo();
         assertTrue(app.calculatorScreen().isResultCorrect("4"));
 
     }

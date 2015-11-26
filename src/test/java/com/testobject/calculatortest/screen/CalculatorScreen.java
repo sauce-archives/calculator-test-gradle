@@ -5,10 +5,20 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CalculatorScreen extends AbstractScreen {
+
+    @AndroidFindBy(id = "net.ludeke.calculator:id/digit2")
+    private MobileElement buttonTwo;
+
+    @AndroidFindBy(id = "net.ludeke.calculator:id/plus")
+    private MobileElement buttonPlus;
+
+    @AndroidFindBy(id = "net.ludeke.calculator:id/equal")
+    private MobileElement buttonEquals;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[1]")
     private MobileElement resultField;
@@ -17,13 +27,12 @@ public class CalculatorScreen extends AbstractScreen {
         super(driver);
     }
 
-    public void tapDigit(String digit) {
+    public void addTwoAndTwo() {
 
-        try {
-            findElementWithTimeout(By.name(digit), 10).click();
-        } catch (NoSuchElementException e) {
-            System.out.println("Button "+digit+" not found!");
-        }
+        buttonTwo.click();
+        buttonPlus.click();
+        buttonTwo.click();
+        buttonEquals.click();
 
     }
 
@@ -35,7 +44,7 @@ public class CalculatorScreen extends AbstractScreen {
             (new WebDriverWait(driver, 30)).until(ExpectedConditions.textToBePresentInElement(resultField, result));
             return true;
 
-        } catch (Exception e) {
+        } catch (TimeoutException e) {
 
             return false;
 
