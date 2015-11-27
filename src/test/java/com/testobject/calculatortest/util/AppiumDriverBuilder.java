@@ -22,9 +22,9 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability("deviceName", "AndroidTestDevice");
-			capabilities.setCapability("platformName", "Android");
 
 			if (testObjectConfig.isPresent()) {
+
 				capabilities.setCapability(TESTOBJECT_API_KEY, testObjectConfig.get().apiKey);
 				capabilities.setCapability(TESTOBJECT_APP_ID, testObjectConfig.get().appId);
 				capabilities.setCapability(TESTOBJECT_DEVICE, testObjectConfig.get().deviceId);
@@ -35,8 +35,6 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 				if (testName.isPresent()) {
 					capabilities.setCapability(TESTOBJECT_TEST_NAME, testName.get());
 				}
-
-				endpoint = "https://app.testobject.com:443/api/appium/wd/hub";
 
 			} else {
 				endpoint = "http://127.0.0.1:4723/wd/hub";

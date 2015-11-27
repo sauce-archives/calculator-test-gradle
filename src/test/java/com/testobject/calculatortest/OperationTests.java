@@ -20,26 +20,8 @@ public class OperationTests extends AbstractTest {
     @Test
     public void twoPlusTwoOperation() {
 
-        app.calculatorScreen().tapDigit("2");
-        app.calculatorScreen().tapSymbol("+");
-        app.calculatorScreen().tapDigit("2");
-        app.calculatorScreen().tapSymbol("=");
-
+        app.calculatorScreen().addTwoAndTwo();
         assertTrue(app.calculatorScreen().isResultCorrect("4"));
-
-    }
-
-    /* An invalid operation, it navigates to the advanced panel, selects factorial, then minus,
-     * then the equal button. The expected result is an error message in the result field. */
-    @Test
-    public void factorialMinusOperation() {
-
-        app.calculatorScreen().navigateToAdvancedPanel();
-        app.advancedPanelScreen().tapSymbol("!");
-        app.calculatorScreen().tapSymbol("−");
-        app.calculatorScreen().tapSymbol("=");
-
-        assertFalse(app.calculatorScreen().isOperationValid());
 
     }
 

@@ -38,16 +38,6 @@ public abstract class AbstractScreen {
         return (MobileElement)(new WebDriverWait(driver, timeOutInSeconds)).until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public void tapSymbol(String symbol) {
-
-        try {
-            findElement(By.name(symbol)).click();
-        } catch (NoSuchElementException e) {
-            System.out.println("Button "+symbol+" not found!");
-        }
-
-    }
-
     protected void takeScreenShot(){
         driver.getScreenshotAs(OutputType.BASE64);
     }
