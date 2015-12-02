@@ -46,6 +46,7 @@ public abstract class AbstractTest {
         resultWatcher.setAppiumDriver(driver);
 
         app = new Calculator(device, driver);
+
     }
 
 }
