@@ -1,6 +1,0 @@
-- not working certificate --> no proper indicator (no internet)  
-- wrong password saved --> nothing happens  
-- keyboard done button on login doesn' do anything  
-- no customer id in master de.zeppelin.appium.ios.data
-- translation for opportunity probability doesn't work
-- strange opportunity search behaviour (first empty search list, then searched again with results)
