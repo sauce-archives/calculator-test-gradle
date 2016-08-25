@@ -7,7 +7,7 @@ import org.testobject.appium.junit.TestObjectAppiumSuite;
 
 import static org.junit.Assert.assertTrue;
 
-@TestObject(testLocally = true, testObjectApiKey = "YOUR_API_KEY", testObjectSuiteId = 123)
+@TestObject(testObjectSuiteId = 16381)
 @RunWith(TestObjectAppiumSuite.class)
 public class OperationTests extends AbstractTest {
 
