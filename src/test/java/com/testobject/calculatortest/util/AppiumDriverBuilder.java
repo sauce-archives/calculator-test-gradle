@@ -7,8 +7,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.testobject.appium.common.TestObjectCapabilities.TESTOBJECT_API_KEY;
-import static org.testobject.appium.common.TestObjectCapabilities.TESTOBJECT_TEST_REPORT_ID;
+import static org.testobject.rest.api.appium.common.TestObjectCapabilities.TESTOBJECT_API_KEY;
+import static org.testobject.rest.api.appium.common.TestObjectCapabilities.TESTOBJECT_TEST_REPORT_ID;
 
 public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
