@@ -2,12 +2,12 @@ package com.testobject.calculatortest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testobject.appium.common.TestObject;
 import org.testobject.appium.junit.TestObjectAppiumSuite;
+import org.testobject.rest.api.appium.common.TestObject;
 
 import static org.junit.Assert.assertTrue;
 
-@TestObject(testLocally = true, testObjectApiKey = "YOUR_API_KEY", testObjectSuiteId = 123)
+@TestObject(testObjectSuiteId = 16381)
 @RunWith(TestObjectAppiumSuite.class)
 public class OperationTests extends AbstractTest {
 
