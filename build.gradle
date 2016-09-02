@@ -4,16 +4,13 @@ version = '1.0'
 
 repositories {
     mavenCentral()
-    maven {
-        url "http://nexus.testobject.org/nexus/content/repositories/testobject-public-repo/"
-    }
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
     testCompile 'io.appium:java-client:3.2.0'
-    testCompile 'org.testobject.extras.appium:appium-java-api:0.0.11'
+    testCompile 'org.testobject:testobject-appium-java-api:0.0.24'
 
 }
 

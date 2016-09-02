@@ -8,8 +8,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.testobject.appium.common.TestObjectCapabilities.*;
-
 public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 	public static AndroidDriverBuilder forAndroid() {
@@ -25,15 +23,14 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 
 			if (testObjectConfig.isPresent()) {
 
-				capabilities.setCapability(TESTOBJECT_API_KEY, testObjectConfig.get().apiKey);
-				capabilities.setCapability(TESTOBJECT_APP_ID, testObjectConfig.get().appId);
-				capabilities.setCapability(TESTOBJECT_DEVICE, testObjectConfig.get().deviceId);
+				capabilities.setCapability("testobject_api_key", testObjectConfig.get().apiKey);
+				capabilities.setCapability("testobject_device", testObjectConfig.get().deviceId);
 
 				if (suiteName.isPresent()) {
-					capabilities.setCapability(TESTOBJECT_SUITE_NAME, suiteName.get());
+					capabilities.setCapability("testobject_suite_name", suiteName.get());
 				}
 				if (testName.isPresent()) {
-					capabilities.setCapability(TESTOBJECT_TEST_NAME, testName.get());
+					capabilities.setCapability("testobject_test_name", testName.get());
 				}
 
 			} else {
@@ -54,18 +51,16 @@ public abstract class AppiumDriverBuilder<SELF, DRIVER extends AppiumDriver> {
 	private static class TestObjectConfig {
 
 		private final String apiKey;
-		private final int appId;
 		private final String deviceId;
 
-		public TestObjectConfig(String apiKey, int appId, String deviceId) {
+		public TestObjectConfig(String apiKey, String deviceId) {
 			this.apiKey = apiKey;
-			this.appId = appId;
 			this.deviceId = deviceId;
 		}
 	}
 
-	public SELF againstTestobject(String apiKey, int appId, String deviceId) {
-		this.testObjectConfig = Optional.of(new TestObjectConfig(apiKey, appId, deviceId));
+	public SELF againstTestobject(String apiKey, String deviceId) {
+		this.testObjectConfig = Optional.of(new TestObjectConfig(apiKey, deviceId));
 		this.endpoint = "https://app.testobject.com:443/api/appium/wd/hub";
 
 		return (SELF) this;
